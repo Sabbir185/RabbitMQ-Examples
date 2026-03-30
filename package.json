@@ -4,7 +4,7 @@
   "description": "",
   "main": "dist/index.js",
   "scripts": {
-    "start:producer": "ts-node src/producers/email.producer.ts",
+    "start:producer": "ts-node src/producers/multiple.email.producer.ts",
     "start:consumer": "ts-node src/consumers/email.consumer.ts",
     "build": "npx tsc",
     "start": "node dist/index.js",
