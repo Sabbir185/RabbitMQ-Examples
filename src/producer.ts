@@ -5,8 +5,10 @@ async function sendMsg() {
   const channel = await connection.createChannel();
 
   const queue = "tasks";
-  await channel.assertQueue(queue);
-  await channel.sendToQueue(queue, Buffer.from("Hello, World 2!"));
+  await channel.assertQueue(queue, { durable: true });
+  await channel.sendToQueue(queue, Buffer.from("Hello, World!"), {
+    persistent: true,
+  });
 
   console.log("Message sent to the queue");
 
