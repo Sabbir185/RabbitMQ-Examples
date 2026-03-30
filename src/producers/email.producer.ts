@@ -8,7 +8,7 @@ import { createChannel } from "../rabbitmq";
 
   const emailData = {
     type: "email",
-    to: "user@example.com",
+    to: `user@example.com`,
     subject: "Welcome to RabbitMQ",
     body: "This is a test email sent through RabbitMQ.",
   };
@@ -18,7 +18,6 @@ import { createChannel } from "../rabbitmq";
   });
 
   console.log("✅ Email task sent to queue:", emailData);
-
   setTimeout(async () => {
     await channel.close();
     await connection.close();

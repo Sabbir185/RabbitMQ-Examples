@@ -5,6 +5,7 @@ import { createChannel } from "../rabbitmq";
 
   const queue = "email_queue";
   await channel.assertQueue(queue, { durable: true });
+  channel.prefetch(1);
 
   console.log("✅ Waiting for messages in queue: ", queue);
 

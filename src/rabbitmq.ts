@@ -24,5 +24,5 @@ export async function createChannel() {
   const conn: any = await connectRabbitMQ();
   const channel: Channel = await conn.createChannel();
   console.log("✅ RabbitMQ channel created");
-  return { channel, connection };
+  return { channel, connection: conn };
 }
