@@ -2,6 +2,14 @@
 
 - docker compose up
 
+Web-view: [http://localhost:15672](http://localhost:15672)
+
+### Producer and Consumers
+- npx ts-node src/producer.ts
+- npx ts-node src/consumers/email.consumer.ts
+- npx ts-node src/consumers/sms.consumer.ts
+- npx ts-node src/consumers/push.consumer.ts
+
 ### 🚨 Failed Request Handling (RabbitMQ)
 
 ```text
