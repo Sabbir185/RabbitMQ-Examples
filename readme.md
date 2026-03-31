@@ -10,6 +10,13 @@ Web-view: [http://localhost:15672](http://localhost:15672)
 - npx ts-node src/consumers/sms.consumer.ts
 - npx ts-node src/consumers/push.consumer.ts
 
+### Or, use PM2
+```
+1. Build first using: npm run build
+2. pm2 start ecosystem.config.js
+3. node dist/producer.js
+```
+
 ### 🚨 Failed Request Handling (RabbitMQ)
 
 ```text
