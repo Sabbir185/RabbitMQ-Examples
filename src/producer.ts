@@ -1,26 +1,21 @@
-import { createChannel } from "./rabbitmq"
+import { createChannel } from "./rabbitmq";
 
-(async()=> {
-  const { channel, connection } = await createChannel()
+(async () => {
+  const { channel, connection } = await createChannel();
 
-  const exchange = "shop_events";
-  await channel.assertExchange(exchange, "topic", {durable: true});
+  const exchange = "order_broadcast";
+  await channel.assertExchange(exchange, "fanout", { durable: true });
 
-  const messages = [
-    { key: "order.created", msg: "Order created" },
-    { key: "order.cancelled", msg: "Order cancelled" },
-    { key: "payment.success", msg: "Payment Success" },
-    { key: "payment.failed", msg: "Payment Failed" }
-  ]
+  const order = {
+    id: 123,
+    product: "Iphone 15 Max",
+    price: 2500,
+  };
 
-  for (const {key, msg} of messages) {
-    channel.publish(exchange, key, Buffer.from(msg), { persistent: true })
-    console.log(`Send ${key}: ${msg}`)
-  }
+  channel.publish(exchange, "", Buffer.from(JSON.stringify(order)));
 
-  setTimeout(async() => {
-    await channel.close()
-    await connection.close()
-  }, 1500)
-
-})()
+  setTimeout(async () => {
+    await channel.close();
+    await connection.close();
+  }, 1500);
+})();
