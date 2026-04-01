@@ -4,16 +4,16 @@
 module.exports = {
   apps: [
     {
-      name: "email-consumer",
-      script: "dist/consumers/email.consumer.js",
+      name: "order-consumer",
+      script: "dist/consumers/order.consumer.js",
     },
     {
-      name: "push-consumer",
-      script: "dist/consumers/push.consumer.js",
+      name: "payment-consumer",
+      script: "dist/consumers/payment.consumer.js",
     },
     {
-      name: "sms-consumer",
-      script: "dist/consumers/sms.consumer.js",
+      name: "audit-consumer",
+      script: "dist/consumers/audit.consumer.js",
     },
   ],
 };

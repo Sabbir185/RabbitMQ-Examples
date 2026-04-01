@@ -1,30 +1,26 @@
-import { createChannel } from "./rabbitmq";
+import { createChannel } from "./rabbitmq"
 
-(async () => {
-  const { channel, connection } = await createChannel();
+(async()=> {
+  const { channel, connection } = await createChannel()
 
-  const exchange = "notification_exchange";
-  await channel.assertExchange(exchange, "direct", { durable: true });
+  const exchange = "shop_events";
+  await channel.assertExchange(exchange, "topic", {durable: true});
 
-  const user = {
-    id: 1,
-    name: "John Doe",
-    email: "john.doe@example.com",
-  };
+  const messages = [
+    { key: "order.created", msg: "Order created" },
+    { key: "order.cancelled", msg: "Order cancelled" },
+    { key: "payment.success", msg: "Payment Success" },
+    { key: "payment.failed", msg: "Payment Failed" }
+  ]
 
-  const routingKey1 = "email";
-  channel.publish(exchange, routingKey1, Buffer.from(JSON.stringify(user)), { persistent: true });
-  console.log("Sent email notification");
+  for (const {key, msg} of messages) {
+    channel.publish(exchange, key, Buffer.from(msg))
+    console.log(`Send ${key}: ${msg}`)
+  }
 
-  channel.publish(exchange, "sms", Buffer.from(JSON.stringify(user)));
-  console.log("Sent SMS notification");
+  setTimeout(async() => {
+    await channel.close()
+    await connection.close()
+  }, 1500)
 
-  channel.publish(exchange, "push", Buffer.from(JSON.stringify(user)));
-  console.log("Sent push notification");
-
-  setTimeout(async () => {
-    await channel.close();
-    await connection.close();
-  }, 1000);
-
-})();
+})()

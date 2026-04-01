@@ -6,9 +6,9 @@ Web-view: [http://localhost:15672](http://localhost:15672)
 
 ### Producer and Consumers
 - npx ts-node src/producer.ts
-- npx ts-node src/consumers/email.consumer.ts
-- npx ts-node src/consumers/sms.consumer.ts
-- npx ts-node src/consumers/push.consumer.ts
+- npx ts-node src/consumers/order.consumer.ts
+- npx ts-node src/consumers/payment.consumer.ts
+- npx ts-node src/consumers/audit.consumer.ts
 
 ### Or, use PM2
 ```
