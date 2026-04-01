@@ -4,16 +4,16 @@
 module.exports = {
   apps: [
     {
-      name: "analytics-consumer",
-      script: "dist/consumers/analytics.consumer.js",
+      name: "csv-consumer",
+      script: "dist/consumers/csv.report.js",
     },
     {
-      name: "email-consumer",
-      script: "dist/consumers/email.consumer.js",
+      name: "pdf-consumer",
+      script: "dist/consumers/pdf.report.js",
     },
     {
-      name: "sms-consumer",
-      script: "dist/consumers/sms.consumer.js",
+      name: "high-priority-consumer",
+      script: "dist/consumers/high.priority.js",
     },
   ],
 };

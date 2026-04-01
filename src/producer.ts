@@ -3,19 +3,32 @@ import { createChannel } from "./rabbitmq";
 (async () => {
   const { channel, connection } = await createChannel();
 
-  const exchange = "order_broadcast";
-  await channel.assertExchange(exchange, "fanout", { durable: true });
+  const exchange = "report_headers_exchange";
+  await channel.assertExchange(exchange, "headers", { durable: true });
 
-  const order = {
-    id: 123,
-    product: "Iphone 15 Max",
-    price: 2500,
-  };
+  const messages = [
+    {
+      data: "US Pdf Report",
+      headers: { format: "pdf", region: "US", priority: "high" },
+    },
+    {
+      data: "EU CSV Report",
+      headers: { format: "csv", region: "EU", priority: "low" },
+    },
+    {
+      data: "ASIA Pdf Report",
+      headers: { format: "pdf", region: "ASIA", priority: "medium" },
+    },
+  ];
 
-  channel.publish(exchange, "", Buffer.from(JSON.stringify(order)));
+  for (const msg of messages) {
+    channel.publish(exchange, "", Buffer.from(msg.data), { headers: msg.headers });
+    console.log(`Sent: ${msg.data} with headers ${JSON.stringify(msg.headers)}`);
+  }
 
   setTimeout(async () => {
     await channel.close();
     await connection.close();
   }, 1500);
+  
 })();
