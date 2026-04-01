@@ -14,7 +14,7 @@ import { createChannel } from "./rabbitmq"
   ]
 
   for (const {key, msg} of messages) {
-    channel.publish(exchange, key, Buffer.from(msg))
+    channel.publish(exchange, key, Buffer.from(msg), { persistent: true })
     console.log(`Send ${key}: ${msg}`)
   }
 
