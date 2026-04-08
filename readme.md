@@ -1,3 +1,11 @@
+## Direct Exchange
+Direct exchanges route to one or more bound queues, streams or exchanges using an exact equivalence of a binding's routing key.
+
+For example, a binding (routing) key of "abc" will match "abc" and "abc" only.
+
+* Bind direct exchange to the queue, One to One routing, same routing key for producer and consumer 
+
+
 ### Start RabbitMQ
 
 - docker compose up
