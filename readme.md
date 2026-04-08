@@ -1,3 +1,15 @@
+## Fanout Exchange
+Fanout exchanges route a copy of every message published to them to every queue, stream or exchange bound to it. The message's routing key is competely ignored.
+
+* No routing key required
+* Messages are broadcast to all bound queues
+* Every bound queue receives its own copy of the message
+* Ideal for publish/subscribe (pub-sub) patterns
+* Ignores routing logic entirely — focuses only on distribution
+* Useful for scenarios like notifications, logs, or real-time updates
+* Simple and fast since there’s no routing decision involved
+
+
 ### Start RabbitMQ
 
 - docker compose up
