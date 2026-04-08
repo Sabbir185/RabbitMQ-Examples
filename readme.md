@@ -1,3 +1,12 @@
+## Headers Exchange
+- No routing key used (ignored completely)
+- Routes messages based on headers (key-value pairs)
+- Binding defines matching rules using headers
+- Supports two modes:
+	- x-match = all → all headers must match
+	- x-match = any → at least one header must match
+- Suitable for multi-attribute filtering (format, type, content-type etc...) 
+
 ### Start RabbitMQ
 
 - docker compose up
