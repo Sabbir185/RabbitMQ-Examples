@@ -15,7 +15,7 @@ import (
 	"github.com/rabbitmq/amqp091-go"
 )
 
-func main() {
+func simpleProducer() {
 	conn, err := amqp091.Dial("amqp://guest:guest@localhost:5672/")
 	if err != nil {
 		log.Fatalln("RabbitMQ connection error!", err)
